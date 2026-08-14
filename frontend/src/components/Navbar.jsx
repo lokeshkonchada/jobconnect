@@ -1,41 +1,69 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import './Navbar.css';
 
 function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
+  const isActive = (path) => location.pathname === path;
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-      <Link className="navbar-brand" to="/">JobConnect</Link>
-      <div className="d-flex gap-3 ms-auto">
-        <Link className="nav-link text-white" to="/jobs">Jobs</Link>
+    <nav className="jc-navbar">
+      <div className="jc-navbar-inner">
+        <Link className="jc-brand" to="/">
+          <span className="jc-brand-mark">JC</span>
+          <span className="jc-brand-text">JobConnect</span>
+        </Link>
 
-        {!user && (
-          <>
-            <Link className="nav-link text-white" to="/login">Login</Link>
-            <Link className="nav-link text-white" to="/register">Register</Link>
-          </>
-        )}
+        <div className="jc-links">
+          <Link className={`jc-link ${isActive('/jobs') ? 'active' : ''}`} to="/jobs">
+            Jobs
+          </Link>
 
-        {user && user.role === 'CANDIDATE' && (
-          <Link className="nav-link text-white" to="/candidate/dashboard">My Applications</Link>
-        )}
+          {!user && (
+            <>
+              <Link className={`jc-link ${isActive('/login') ? 'active' : ''}`} to="/login">
+                Login
+              </Link>
+              <Link className="jc-cta" to="/register">
+                Get Started
+              </Link>
+            </>
+          )}
 
-        {user && user.role === 'RECRUITER' && (
-          <Link className="nav-link text-white" to="/recruiter/dashboard">Dashboard</Link>
-        )}
+          {user && user.role === 'CANDIDATE' && (
+            <Link
+              className={`jc-link ${isActive('/candidate/dashboard') ? 'active' : ''}`}
+              to="/candidate/dashboard"
+            >
+              My Applications
+            </Link>
+          )}
 
-        {user && (
-          <button className="btn btn-outline-light btn-sm" onClick={handleLogout}>
-            Logout ({user.email})
-          </button>
-        )}
+          {user && user.role === 'RECRUITER' && (
+            <Link
+              className={`jc-link ${isActive('/recruiter/dashboard') ? 'active' : ''}`}
+              to="/recruiter/dashboard"
+            >
+              Dashboard
+            </Link>
+          )}
+
+          {user && (
+            <div className="jc-user">
+              <span className="jc-avatar">{user.email.charAt(0).toUpperCase()}</span>
+              <span className="jc-email">{user.email}</span>
+              <button className="jc-logout" onClick={handleLogout}>Logout</button>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

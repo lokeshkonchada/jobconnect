@@ -1,0 +1,149 @@
+.jc-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #0b2545;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.jc-navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+}
+
+.jc-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.jc-brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1d7fd6, #6fc3ff);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.jc-brand-text {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+.jc-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jc-link {
+  color: #b8cbe6;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.jc-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.jc-link.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.jc-cta {
+  margin-left: 6px;
+  background: #1d7fd6;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.jc-cta:hover {
+  background: #1568b3;
+  color: #fff;
+}
+
+.jc-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 12px;
+  padding-left: 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.jc-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #1d4e89;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.jc-email {
+  color: #cfe0f5;
+  font-size: 0.85rem;
+}
+
+.jc-logout {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.jc-logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .jc-navbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .jc-links {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .jc-email {
+    display: none;
+  }
+}
